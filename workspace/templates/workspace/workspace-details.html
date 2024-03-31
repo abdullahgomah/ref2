@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{workspace.name}}
+{% endblock title %}
+    
+
+
+{% block content %}
+    <h1>
+        اسم بيئة العمل: {{workspace.name}}
+    </h1>
+
+
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">إنشاء موقع</button>
+    </form>
+
+
+    <div class="">
+        <h2>المواقع</h2>
+        {% for website in workspace.websites.all %}
+        <p>
+            <a href="{% url 'workspace:website-details' workspace.id website.id %}">{{website}}</a>
+        </p>
+        {% endfor %}
+            
+    </div>
+
+
+    <a href="{% url 'workspace:delete_workspace' workspace.id %}" class="btn-del">حذف بيئة العمل</a>
+{% endblock content %}

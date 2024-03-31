@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    بيئات العمل
+{% endblock title %}
+
+
+
+{% block content %}
+    
+
+<h1>بيئات العمل</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">إنشاء بيئة عمل</button>
+</form>
+
+{% for workspace in workspaces %}
+    <div>
+
+        <a href="{% url 'workspace:workspace-details' workspace.id %}">{{workspace}}</a>
+        
+    </div>
+{% empty %}
+    <p>
+        لا يوجد بيئات عمل لعرضها
+    </p>
+{% endfor %}
+    
+
+{% endblock content %}
+    
+    

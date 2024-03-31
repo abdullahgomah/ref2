@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{website.name}}
+{% endblock title %}
+    
+
+
+{% block content %}
+    <h2>
+        اسم بيئة العمل: 
+        <a href="{% url 'workspace:workspace-details' website.workspace.id %}">{{website.workspace}}</a>
+    </h2>
+    <h3>
+        اسم الموقع: {{website.name}}
+    </h3>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit">إنشاء صفحة</button>
+    </form>
+
+    
+    <h3>الصفحات:</h3>
+    
+    {% for page in website.pages.all %}
+        <p>
+            <a href="{% url 'workspace:page-details' website.id page.id %}">{{page}}</a>
+        </p>
+    {% empty %}
+        <p>لا يوجد صفحات لعرضها</p>
+    {% endfor %}
+
+
+    <a href="{% url 'workspace:delete_website' website.id  %}" class="btn-del">حذف الموقع </a>
+
+        
+
+{% endblock content %}

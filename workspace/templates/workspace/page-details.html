@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{page.name}}
+{% endblock title %}
+    
+
+
+{% block content %}
+
+
+<style>
+
+    pre {
+        display: block;
+        padding: 10px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        font-family: Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        white-space: pre-wrap; /* Ensures line breaks are respected */
+        overflow-x: auto; /* Adds horizontal scrollbar if needed */
+    }
+
+    .code__section .code__heading {
+        display: flex;
+        justify-content: space-between;
+        background: #212121;
+        color: white;
+    }
+
+
+    .copy-btn {
+        border-radius: 5px;
+        border: 1px solid #fff;
+        height: fit-content;
+        cursor: pointer;
+        padding: .25rem .5rem;
+        align-self: center;
+    }
+
+</style>
+
+<h1>
+    اسم الموقع: 
+    <a href="{% url 'workspace:website-details' page.website.workspace.id page.website.id %}">
+        {{page.website}}
+    </a>
+</h1>
+<h2>
+    اسم الصفحة: {{page.name}}
+</h2>
+
+
+<section class="code__section">
+    <div class="code__heading">
+        <p>{{page.name}}</p>
+        <a class="copy-btn">Copy</a>
+    </div>
+    <pre dir="ltr">
+        {{page.code}}
+    </pre>
+</section>
+
+
+<a href="{% url 'workspace:delete_website_page' page.id %}" class="btn-del">حذف الصفحة </a>
+
+
+{% endblock content %}
+    
