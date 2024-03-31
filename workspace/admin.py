@@ -19,3 +19,26 @@ class WebsitePageAdmin(admin.ModelAdmin):
     list_filter = ('website', )
 
 admin.site.register(WebsitePage, WebsitePageAdmin)
+
+
+class DatabaseAdmin(admin.ModelAdmin): 
+    model = Database 
+    list_filter = ('workspace', )
+    
+
+admin.site.register(Database, DatabaseAdmin) 
+
+
+class DatabaseAttachmentAdmin(admin.ModelAdmin): 
+    model = DatabaseAttachment 
+    list_filter = ('db', )
+
+admin.site.register(DatabaseAttachment, DatabaseAttachmentAdmin)
+
+class WebsiteAdmin(admin.AdminSite): 
+    site_title = "بالإشارة"
+    index_title = "بالإشارة"
+
+admin.AdminSite.site_title = "بالإشارة"
+admin.AdminSite.index_title = "لوحة الإدارة"
+admin.AdminSite.site_header = "بالإشارة"

@@ -23,3 +23,8 @@ class CreateWebsitePageForm(forms.ModelForm):
     class Meta:
         model = WebsitePage
         fields = ('name',)
+
+class CreateDatabaseForm(forms.ModelForm):
+    class Meta: 
+        model = Database 
+        fields = ['name', ]

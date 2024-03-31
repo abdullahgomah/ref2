@@ -47,3 +47,31 @@ class WebsitePage(models.Model):
     class Meta: 
         verbose_name = 'صفحة موقع'
         verbose_name_plural = 'صفحات المواقع'
+
+
+
+class Database(models.Model):
+    workspace = models.ForeignKey(Workspace, verbose_name="بيئة العمل", on_delete=models.CASCADE, related_name='databases')
+    name = models.CharField(verbose_name="اسم قاعدة البيانات", max_length=150)
+
+    class Meta:
+        verbose_name = "قاعدة بيانات"
+        verbose_name_plural = "قواعد البيانات"
+
+    def __str__(self):
+        return self.name
+
+
+class DatabaseAttachment(models.Model):
+    db = models.ForeignKey("workspace.Database", verbose_name="قاعدة البيانات", on_delete=models.CASCADE)
+    name = models.CharField(verbose_name="اسم المرفق ", max_length=150)
+    description= models.TextField(verbose_name='وصف المرفق', null=True, blank=True)
+    file = models.FileField(verbose_name="المرفق", upload_to="db/attachments/")
+
+
+    class Meta:
+        verbose_name = "مرفق"
+        verbose_name_plural = "مرفقات قواعد البيانات"
+
+    def __str__(self):
+        return self.name

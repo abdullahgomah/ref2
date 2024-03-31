@@ -9,5 +9,7 @@ urlpatterns = [
     path('pages/<int:website_id>/<int:page_id>/', page_details, name='page-details'), 
     path('workspace/delete/<uuid:workspace_id>/', delete_workspace, name='delete_workspace'),
     path('website/delete/<int:website_id>/', delete_website, name='delete_website'),
-    path('websitepage/delete/<int:page_id>/', delete_website_page, name='delete_website_page')
+    path('websitepage/delete/<int:page_id>/', delete_website_page, name='delete_website_page'), 
+
+    path('workspace/databases/create/<uuid:workspace_id>/', create_database, name='create-database')
 ]

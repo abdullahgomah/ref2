@@ -25,7 +25,9 @@ def all(request):
 
 
 def workspace_details(request, id): 
-    workspcae = get_object_or_404(Workspace, id=id) 
+    workspcae = get_object_or_404(Workspace, id=id)
+
+    create_db_form = CreateDatabaseForm()  
 
     form = CreateWebsiteForm() 
 
@@ -40,6 +42,7 @@ def workspace_details(request, id):
     context = {
         'workspace': workspcae,
         'form': form, 
+        'create_db_form': create_db_form
     } 
     return render(request, 'workspace/workspace-details.html', context)
 
@@ -94,3 +97,14 @@ def delete_website_page(request, page_id):
     workspace_id = page.website.workspace.id 
     page.delete()
     return redirect('workspace:website-details', website_id=website_id, workspace_id=workspace_id)  
+
+
+def create_database(request, workspace_id): 
+    workspace = get_object_or_404(Workspace, id=workspace_id)
+
+    if request.POST: 
+        form = CreateDatabaseForm(request.POST) 
+        if form.is_valid(): 
+            form.instance.workspace = workspace 
+            form.save() 
+            return redirect('workspace:workspace-details', id=workspace_id)

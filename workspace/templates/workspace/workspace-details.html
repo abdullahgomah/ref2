@@ -30,6 +30,22 @@
             
     </div>
 
+    <div>
+        <h2>قواعد البيانات: </h2>
+        {% for db in workspace.databases.all %}
+            <a href="">{{db}}</a>
+            <br>
+        {% empty %}
+            <p>لا يوجد قواعد بيانات لعرضها</p>
+        {% endfor %}
+        <form action="{% url 'workspace:create-database' workspace.id %}" method="POST">
+            {% csrf_token %}
+            {{create_db_form}}
+            <button type="submit">إنشاء قاعدة بيانات</button>
+        </form>
+    </div>
+    <br>
+
 
     <a href="{% url 'workspace:delete_workspace' workspace.id %}" class="btn-del">حذف بيئة العمل</a>
 {% endblock content %}
