@@ -66,7 +66,7 @@ class DatabaseAttachment(models.Model):
     db = models.ForeignKey("workspace.Database", verbose_name="قاعدة البيانات", on_delete=models.CASCADE)
     name = models.CharField(verbose_name="اسم المرفق ", max_length=150)
     description= models.TextField(verbose_name='وصف المرفق', null=True, blank=True)
-    file = models.FileField(verbose_name="المرفق", upload_to="db/attachments/")
+    file = models.FileField(verbose_name="المرفق", upload_to="media/db/attachments/")
 
 
     class Meta:
