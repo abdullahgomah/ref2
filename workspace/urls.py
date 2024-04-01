@@ -11,5 +11,6 @@ urlpatterns = [
     path('website/delete/<int:website_id>/', delete_website, name='delete_website'),
     path('websitepage/delete/<int:page_id>/', delete_website_page, name='delete_website_page'), 
 
-    path('workspace/databases/create/<uuid:workspace_id>/', create_database, name='create-database')
+    path('workspace/databases/create/<uuid:workspace_id>/', create_database, name='create-database'), 
+    path('database/details/<int:db_id>/', database_details, name='database-details'), 
 ]

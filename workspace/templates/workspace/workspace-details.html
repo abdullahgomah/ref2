@@ -33,7 +33,7 @@
     <div>
         <h2>قواعد البيانات: </h2>
         {% for db in workspace.databases.all %}
-            <a href="">{{db}}</a>
+            <a href="{% url 'workspace:database-details' db.id %}">{{db}}</a>
             <br>
         {% empty %}
             <p>لا يوجد قواعد بيانات لعرضها</p>

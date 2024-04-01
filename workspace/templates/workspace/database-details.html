@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{db.name}}
+{% endblock title %}
+
+{% block content %}
+
+<h1>بيئة العمل: 
+    <a href="">{{db.workspace.name}}</a>
+</h1>
+<h2>قاعدة بيانات: {{db.name}}</h2>
+
+<div class="">
+    <h3>الحقول</h3>
+    
+</div>
+
+
+{% endblock content %}

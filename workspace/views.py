@@ -108,3 +108,13 @@ def create_database(request, workspace_id):
             form.instance.workspace = workspace 
             form.save() 
             return redirect('workspace:workspace-details', id=workspace_id)
+
+
+def database_details(request, db_id): 
+    db = get_object_or_404(Database, id=db_id) 
+
+    context = {
+        'db': db,
+    }
+
+    return render(request, 'workspace/database-details.html', context)
