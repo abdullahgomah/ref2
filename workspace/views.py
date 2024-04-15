@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import * 
+from database.models import * 
 from .forms import * 
+from database.forms import * 
 from django.http import HttpResponseRedirect 
 
 # Create your views here.
