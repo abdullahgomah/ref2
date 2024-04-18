@@ -114,9 +114,12 @@ def create_database(request, workspace_id):
 
 def database_details(request, db_id): 
     db = get_object_or_404(Database, id=db_id) 
+    add_field_form = CreateDatabaseFieldForm() 
+    ### in this section, will be javascript filter to show only field types that's equally to the database type 
 
     context = {
         'db': db,
+        'add_field_form': add_field_form,
     }
 
     return render(request, 'workspace/database-details.html', context)

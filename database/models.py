@@ -30,7 +30,8 @@ class FieldType(models.Model):
 class Database(models.Model):
     workspace = models.ForeignKey(Workspace, verbose_name="بيئة العمل", on_delete=models.CASCADE, related_name='databases')
     name = models.CharField(verbose_name="اسم قاعدة البيانات", max_length=150)
-
+    db_type = models.ForeignKey(DatabaseType, on_delete=models.SET_NULL, null=True, blank=True) 
+    
     class Meta:
         verbose_name = "قاعدة بيانات"
         verbose_name_plural = "قواعد البيانات"
@@ -88,8 +89,7 @@ class PreBuiltFieldDepartment(models.Model):
 
 
 class DatabaseField(models.Model):
-    db = models.ForeignKey(Database, verbose_name="قاعدة البيانات", on_delete=models.CASCADE)
-    db_type = models.ForeignKey(DatabaseType, on_delete=models.SET_NULL, null=True, blank=True) 
+    db = models.ForeignKey(Database, verbose_name="قاعدة البيانات", on_delete=models.CASCADE, related_name='fields')
     field_type = models.ForeignKey(FieldType, on_delete=models.SET_NULL, null=True,blank=True) 
     
     name = models.CharField(verbose_name="اسم الحقل", max_length=255)

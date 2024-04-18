@@ -13,8 +13,26 @@
 
 <div class="">
     <h3>الحقول</h3>
+    <ul>
+
+        {% for field in db.fields.all %}
+        <li>
+            <span>
+                {{field}}
+            </span>
+            <a href="{% url 'database:del-db-field' field.id %}">حذف الحقل</a>
+        </li>
+        {% endfor %}
+    </ul>
     
 </div>
 
+
+<form action="{% url 'database:create-db-field' db.id %}" method="post">
+    {% csrf_token %}
+    {{add_field_form}}
+
+    <button type="submit">إضافة حقل</button>
+</form>
 
 {% endblock content %}

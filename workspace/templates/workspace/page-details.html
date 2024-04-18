@@ -11,6 +11,10 @@
 
 <style>
 
+    textarea {
+        direction: ltr;
+    }
+
     pre {
         display: block;
         padding: 10px;
@@ -53,19 +57,48 @@
 </h2>
 
 
-<section class="code__section">
-    <div class="code__heading">
-        <p>{{page.name}}</p>
-        <a class="copy-btn">Copy</a>
-    </div>
-    <pre dir="ltr">
-        {{page.code}}
-    </pre>
-</section>
+<div class="text-editor">
+
+    <section class="code__section">
+        <div class="html-section">
+            <p>HTML</p>
+            <textarea name="html-input" onkeyup="run()" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="css-section">
+            <p>CSS</p>
+            <textarea name="css-input" onkeyup="run()" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="js-section">
+            <p>JS</p>
+            <textarea name="js-input" onkeyup="run()" id="" cols="30" rows="10"></textarea>
+        </div> 
+    </section>
+
+    <section class="output-section">
+        <iframe frameborder="0" class="code-output"></iframe>
+    </section>
+
+</div>
+
 
 
 <a href="{% url 'workspace:delete_website_page' page.id %}" class="btn-del">حذف الصفحة </a>
 
+
+<script>
+
+    function run() {
+
+        let html = document.querySelector('[name=html-input]');
+        let css = document.querySelector('[name=css-input]');
+        let js = document.querySelector('[name=js-input]');
+        let output = document.querySelector('.code-output') 
+    
+        output.contentDocument.body.innerHTML = html.value + "<style>" + css.value + "</style>" 
+        output.contentWindow.eval(js.value) 
+    }
+
+</script>
 
 {% endblock content %}
     
