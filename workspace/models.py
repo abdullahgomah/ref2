@@ -51,4 +51,3 @@ class WebsitePage(models.Model):
         verbose_name_plural = 'صفحات المواقع'
 
 
-
